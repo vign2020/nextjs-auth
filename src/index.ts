@@ -39,8 +39,8 @@ const startup = async () => {
   try {
     console.log("Initializing database module");
     await initializeExpressServer();
-    console.log("Initializing web server module");
-    await createConnectionPool();
+    // console.log("Initializing web server module");
+    // await createConnectionPool();
   } catch (err) {
     console.error(err);
     process.exit(1);
@@ -49,23 +49,23 @@ const startup = async () => {
 
 startup();
 
-const shutdown = async (e?: Error) => {
-  console.log("Shutting down application");
-  try {
-    console.log("Closing database module");
-    await closeConnectionPool();
-    console.log("Closing web server module");
-    httpServer.close();
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-  process.exit(e ? 1 : 0);
-};
+// const shutdown = async (e?: Error) => {
+//   console.log("Shutting down application");
+//   try {
+//     console.log("Closing database module");
+//     await closeConnectionPool();
+//     console.log("Closing web server module");
+//     httpServer.close();
+//   } catch (err) {
+//     console.error(err);
+//     process.exit(1);
+//   }
+//   process.exit(e ? 1 : 0);
+// };
 
-process.on("SIGTERM", () => shutdown());
-process.on("SIGINT", () => shutdown());
-process.on("uncaughtException", (err) => {
-  console.error("Uncaught exception", err);
-  shutdown(err);
-});
+// process.on("SIGTERM", () => shutdown());
+// process.on("SIGINT", () => shutdown());
+// process.on("uncaughtException", (err) => {
+//   console.error("Uncaught exception", err);
+//   shutdown(err);
+// });

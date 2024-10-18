@@ -6,9 +6,16 @@ import { deepEqual } from "assert";
 
 
 
-const getSample = async (req: Request, res: Response, next: NextFunction) => {
+
+
+//new task
+
+
+
+const createStaff= async (req: Request, res: Response, next: NextFunction) => {
+  const {f_name, l_name, dept_id } = req.body
   try {
-    const data = await bookService.getSample();
+    const data = await bookService.createStaff(f_name, l_name, dept_id);
     res.json(data);
     // res.send(200)
   } catch (error) {
@@ -16,196 +23,124 @@ const getSample = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const insertSample = async (req: Request, res: Response, next: NextFunction) => {
-  const {emp_id , first_name , last_name , email , phone_number , created_at , updated_at , created_by , updated_by} = req.body
+
+const createDepartment= async (req: Request, res: Response, next: NextFunction) => {
+  const {dept_name} = req.body
   try {
-    const data = await bookService.insertSample(emp_id , first_name , last_name , email , phone_number , created_at , updated_at , created_by , updated_by);
-    
-    res.json(data)
+    const data = await bookService.createDepartment(dept_name);
+    res.json(data);
     // res.send(200)
   } catch (error) {
     next(error);
   }
 };
 
-const getSampleByName = async (req: Request, res: Response, next: NextFunction) =>{
-   const {first_name} = req.body
-  try{
-    const data = await bookService.getSampleByName(first_name)
-    res.json(data)
-    // res.sendStatus(200)
+const createGuest= async (req: Request, res: Response, next: NextFunction) => {
+  const {f_name , l_name , email} = req.body
+  try {
+    const data = await bookService.createGuest(f_name , l_name , email);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
   }
-  catch(error){
-    next(error)
+};
+
+const createReservation= async (req: Request, res: Response, next: NextFunction) => {
+  const {guest_id , room_id , in_time , out_time} = req.body
+  try {
+    const data = await bookService.createReservation(guest_id , room_id , in_time , out_time);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
   }
-}
+};
 
 
-const deleteSample = async (req: Request, res: Response, next: NextFunction) =>{
-  const {first_name} = req.body
- try{
-   const data = await bookService.deleteSample(first_name)
-   if(data || 0 >= 1)  res.json({message : "record deleted successfully...."})
-    else  res.json({message : "could not delete...."})
-  //  res.json(data)
-   // res.sendStatus(200)
- }
- catch(error){
-   next(error)
- }
-}
-
-const updateSample = async (req: Request, res: Response, next: NextFunction) =>{
-  const {first_name , new_first_name} = req.body
- try{
-   const data = await bookService.updateSample(first_name , new_first_name)
-   res.json(data)
-  //  if(data || 0 >= 1)  res.json({message : "record updated successfully...."})
-  //   else  res.json({message : "could not update...."})
-
- }
- catch(error){
-   next(error)
- }
-}
+const createRoom = async (req: Request, res: Response, next: NextFunction) => {
+  const {room_no , category  , price  , availability} = req.body
+  try {
+    const data = await bookService.createRoom(room_no , category  , price  , availability);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
 
-const insertTeam  = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_name} = req.body
- try{
-    const data = await bookService.insertTeam(team_name)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
 
-const  insertPlayer = async (req: Request, res: Response, next: NextFunction) =>{
-  const {player_name , team_id} = req.body
- try{
-    const data = await bookService.insertPlayer(player_name , team_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+const getdepartmentstaff= async (req: Request, res: Response, next: NextFunction) => {
+  const {dept_name} = req.body
+  try {
+    const data = await bookService.getdepartmentstaff(dept_name);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
-const  insertOwners = async (req: Request, res: Response, next: NextFunction) =>{
-  const {owner_name , team_id} = req.body
- try{
-    const data = await bookService.insertOwners(owner_name , team_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+const getguestdetails= async (req: Request, res: Response, next: NextFunction) => {
+  const {guest_id} = req.body
+  try {
+    const data = await bookService.getguestdetails(guest_id);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
+const getroomdetails= async (req: Request, res: Response, next: NextFunction) => {
 
-const  deleteTeam = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id} = req.body
- try{
-    const data = await bookService.deleteTeam(team_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+  try {
+    const data = await bookService.getroomdetails();
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
+const getallguests= async (req: Request, res: Response, next: NextFunction) => {
 
-const  FindTeamByOwners = async (req: Request, res: Response, next: NextFunction) =>{
-  const {owner_id} = req.body
- try{
-    const data = await bookService.FindTeamByOwners(owner_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+  try {
+    const data = await bookService.getallguests();
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
 
-const  FindInfoByTeam = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id} = req.body
- try{
-    const data = await bookService.FindInfoByTeam(team_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+const deleteGuest= async (req: Request, res: Response, next: NextFunction) => {
+
+  const {guest_id} = req.body
+  try {
+    const data = await bookService.deleteGuest(guest_id);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
 
-const  deletePlayer = async (req: Request, res: Response, next: NextFunction) =>{
-  const {player_id} = req.body
- try{
-    const data = await bookService.deletePlayer(player_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+const updateroom= async (req: Request, res: Response, next: NextFunction) => {
 
-const  insertStadium = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id , stadium_name , sponsor_name} = req.body
- try{
-    const data = await bookService.insertStadium(team_id , stadium_name , sponsor_name)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
+  const {room_id  , room_id_new} = req.body
+  try {
+    const data = await bookService.updateroom(room_id , room_id_new);
+    res.json(data);
+    // res.send(200)
+  } catch (error) {
+    next(error);
+  }
+};
 
-const  insertSponsor = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id , sponsor_name} = req.body
- try{
-    const data = await bookService.insertSponsor(team_id , sponsor_name)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
-
-const  FindTeamByStadiumSponsor = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id } = req.body
- try{
-    const data = await bookService.FindTeamByStadiumSponsor(team_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
-
-const  updateStadiumSponsor = async (req: Request, res: Response, next: NextFunction) =>{
-  const {team_id , model_name  , field_name  , value_new  } = req.body
- try{
-    const data = await bookService.updateStadiumSponsor(team_id , model_name  , field_name  , value_new)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
-
-
-const  deleteStadium = async (req: Request, res: Response, next: NextFunction) =>{
-  const { stadium_id , sponsor_id } = req.body
- try{
-    const data = await bookService.deleteStadium(stadium_id)
-    res.json(data)
- }
- catch(error){
-   next(error)
- }
-}
 
 
 
@@ -213,8 +148,7 @@ const  deleteStadium = async (req: Request, res: Response, next: NextFunction) =
 
 
 export default {
-    getSample , insertSample , getSampleByName , deleteSample , updateSample , insertTeam , insertPlayer , deleteTeam , insertOwners,
-    FindTeamByOwners , FindInfoByTeam , deletePlayer , insertStadium , FindTeamByStadiumSponsor , insertSponsor , updateStadiumSponsor,deleteStadium
+    createGuest , createStaff , createDepartment , getdepartmentstaff , createRoom , createReservation , getguestdetails , getroomdetails , getallguests ,deleteGuest , updateroom
   
   };
   

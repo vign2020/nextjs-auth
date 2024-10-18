@@ -3,29 +3,18 @@ import appController from "../controllers/app-controller";
 
 export const appRouter = Router();
 
-appRouter.get("/" , appController.getSample)
-appRouter.post("/insert" , appController.insertSample)
-appRouter.get("/getByName" , appController.getSampleByName)
-appRouter.delete("/delete" , appController.deleteSample)
-appRouter.patch("/update" , appController.updateSample)
-
-appRouter.post("/insertTeam" , appController.insertTeam)
-appRouter.post("/insertPlayer" , appController.insertPlayer)
-appRouter.post("/insertOwners" , appController.insertOwners)
-
-appRouter.delete("/deleteTeam" , appController.deleteTeam)
-appRouter.get("/FindTeamByOwners" , appController.FindTeamByOwners)
+appRouter.get("/getdepartmentstaff" , appController.getdepartmentstaff)
+appRouter.get("/getguestdetails" , appController.getguestdetails)
+appRouter.get("/getroomdetails" , appController.getroomdetails)
+appRouter.get("/getallguests" , appController.getallguests)
 
 
-appRouter.get("/FindInfoByTeam" , appController.FindInfoByTeam)
-appRouter.delete("/deletePlayer" , appController.deletePlayer)
+appRouter.post("/createstaff" , appController.createStaff)
+appRouter.post("/createDepartment" , appController.createDepartment)
+appRouter.post("/createGuest" , appController.createGuest)
+appRouter.post("/createRoom" , appController.createRoom)
+appRouter.post("/createReservation" , appController.createReservation)
 
-appRouter.post("/insertStadium" , appController.insertStadium)
-appRouter.post("/insertSponsor" , appController.insertSponsor)
+appRouter.delete("/deleteguest" , appController.deleteGuest)
 
-
-appRouter.get("/FindTeamByStadiumSponsor" , appController.FindTeamByStadiumSponsor)
-appRouter.patch("/updateStadiumSponsor" , appController.updateStadiumSponsor)
-
-
-appRouter.delete("/deleteStadium" , appController.deleteStadium)
+appRouter.patch("/updateroom" , appController.updateroom)
