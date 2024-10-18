@@ -10,6 +10,7 @@ import morgan from "morgan";
 import type { Server } from "http";
 // import { errorHandler } from "./middleware/error-handler";
 import { closeConnectionPool, createConnectionPool } from "./config/db-config";
+import cors from 'cors'
 
 let httpServer: Server;
 
@@ -17,11 +18,17 @@ const initializeExpressServer = () =>
   new Promise<void>((resolve, reject) => {
     const app = express();
 
+    app.use(cors());
+    
     app.use(morgan("dev"));
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.use(router);
     app.use((req, res) => res.status(404).send("404: Page Not Found"));
+   
+
+   
+    
     // app.use(errorHandler);
 
     const PORT = env.PORT;

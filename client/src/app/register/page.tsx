@@ -155,7 +155,7 @@ export default function Login() {
 
   {/* Right Side: Login form */}
   <div className="w-1/2 bg-gray-50 p-8 border rounded-md h-screen flex flex-col justify-center items-center">
-    <h1 className="text-3xl font-bold mb-6">Login</h1>
+    <h1 className="text-3xl font-bold mb-6">Register</h1>
     <Form {...form} >
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
@@ -192,7 +192,7 @@ export default function Login() {
         />
 
         {/* Password Confirm */}
-        {/* <FormField
+        <FormField
           control={form.control}
           name="passwordConfirm"
           render={({ field }) => (
@@ -208,11 +208,11 @@ export default function Login() {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         
 
         <Button type="submit" className="w-full">
-          Login
+          Register
         </Button>
       </form>
     </Form>
@@ -224,6 +224,3 @@ export default function Login() {
 
 
   };
-
- 
-
