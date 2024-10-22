@@ -2,7 +2,7 @@
 import { Sequelize , DataTypes, Model } from "sequelize";
 const { Op } = require('sequelize');
 
-export const sequelize = new Sequelize('vehicles', 'root', 'G00gleM00ble123!', {
+export const sequelize = new Sequelize('vehicles', 'root', 'type_your_password_here', {
     host: 'localhost', 
     dialect: 'mysql',  
     logging: false,    
